@@ -4,7 +4,8 @@
   "description": "How about imagining something new...",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
+    "start": "node app.js",
+    "devStart": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,5 +18,15 @@
   "bugs": {
     "url": "https://github.com/zeal2end/Inception/issues"
   },
-  "homepage": "https://github.com/zeal2end/Inception#readme"
+  "homepage": "https://github.com/zeal2end/Inception#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "passport": "^0.6.0"
+  }
 }
