@@ -5,14 +5,9 @@ const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const app = express()
 
-// Database 
-const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true
-})
-const db = mongoose.connection
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Database'))
+// Database
+const connectDB = require("./lib/database")
+connectDB()
 
 // Routes
 const indexRouter = require('./routes/index')
@@ -26,4 +21,11 @@ app.use(express.static('public'))
 
 app.use('/', indexRouter)
 
-app.listen(process.env.PORT || 3000)
+const PORT = process.env.PORT || 3000
+const server = app.listen(PORT, () => console.log(`Server Connected to port ${PORT}`))
+
+// Handling Error
+process.on("unhandledRejection", err => {
+    console.log(`An error occurred: ${err.message}`)
+    server.close(() => process.exit(1))
+})
